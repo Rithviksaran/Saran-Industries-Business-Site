@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saran Industries — Business Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --text: #FFF5BA; /* Background/Text Colour */
+            --accent-15: #FFFFFF; /* Accent/Accent 15 */
+            --accent-14: #FA9819; /* Accent/Accent 14 */
+            --accent-nums: #F45F00; /* Numbers color for nav/contents/titles */
+            --highlight-dept: #FA9819; /* Department title highlight */
+
+            --container-w: 1280px;
+            --main-w: 1030px;
+
+            /* Typography from Figma tokens */
+            --links-size: 15px; --links-weight: 500; --links-lh: 1.2;
+            --display-size: 10px; --display-weight: 500; --display-lh: 1.2;
+            --h1-size: 60px; --h1-weight: 500; --h1-lh: 1.1;
+            --h2-size: 30px; --h2-weight: 500; --h2-lh: 1.2;
+            --h3-size: 22px; --h3-weight: 600; --h3-lh: 1.2;
+            --p-size: 18px; --p-weight: 500; --p-lh: 1.2;
+            --cap1-size: 30px; --cap1-weight: 500; --cap1-lh: 1.2;
+            --cap2-size: 13px; --cap2-weight: 500; --cap2-lh: 1.2;
+        }
+
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: "Rethink Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container { width: var(--container-w); margin: 0 auto; }
+
+        /* Navigation (component Size=Desktop nav) */
+        .nav { position: fixed; top: 0; left: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; padding: 30px 10px; width: 250px; height: 100vh; background: var(--bg); border-right: 1px solid rgba(255,255,255,0.1); z-index: 1000; }
+        .nav .logo { width: 100%; height: 71.83px; padding: 30px 20px 30px 32px; background: url("public/assets/nav_logo.png") left center / contain no-repeat; }
+        .nav .links { width: 100%; display: flex; flex-direction: column; gap: 10px; padding: 0 20px 30px 32px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav .link { display: inline-flex; gap: 8px; align-items: baseline; }
+        .nav .link .text { font-size: var(--links-size); font-weight: var(--links-weight); line-height: var(--links-lh); color: var(--accent-15); letter-spacing: -0.02em; }
+        .nav .link .num { font-size: var(--display-size); font-weight: var(--display-weight); line-height: var(--display-lh); color: var(--accent-nums); letter-spacing: -0.02em; }
+
+        /* Page layout */
+        .page { width: 100%; }
+        .content { margin-left: 250px; position: relative; z-index: 1; }
+        .frame-desktop { width: var(--main-w); margin: 0 auto; }
+        body { overflow-x: hidden; }
+
+        /* Hero */
+        .hero { width: 100%; height: 540px; background: url("public/assets/hero.png") center / cover no-repeat; }
+
+        /* Sections layout */
+        .main { display: flex; flex-direction: column; }
+        .section-intro { display: flex; flex-direction: column; gap: 30px; padding: 32px 32px 120px; border-left: 1px solid rgba(255,255,255,0.1); }
+        .intro-row { display: flex; gap: 32px; align-items: flex-start; }
+        .h1 { font-size: var(--h1-size); font-weight: var(--h1-weight); line-height: var(--h1-lh); letter-spacing: -0.01em; color: var(--accent-15); width: 419px; }
+        .paragraph { font-size: var(--p-size); font-weight: var(--p-weight); line-height: var(--p-lh); letter-spacing: -0.01em; color: var(--text); white-space: pre-wrap; }
+        .intro-row .paragraph { flex: 1; }
+
+        .toc { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 32px 32px 120px; border-top: 1px solid rgba(255,255,255,0.1); border-left: 1px solid rgba(255,255,255,0.1); }
+        .h2 { font-size: var(--h2-size); font-weight: var(--h2-weight); line-height: var(--h2-lh); letter-spacing: -0.02em; color: var(--accent-15); }
+        .toc-list { display: flex; flex-direction: column; gap: 10px; }
+        .toc-item { display: flex; gap: 10px; }
+
+        .section { display: flex; flex-direction: column; gap: 30px; padding: 32px 32px 120px; width: 1030px; border-top: 1px solid rgba(255,255,255,0.1); border-left: 1px solid rgba(255,255,255,0.1); }
+        .row { display: flex; gap: 32px; width: 100%; }
+        .title-row { display: flex; align-items: flex-end; gap: 4px; width: 100%; }
+        .title-col { width: 299px; }
+        .num-col { margin-left: auto; display: flex; flex-direction: column; gap: 8px; }
+        .title-number { color: var(--accent-nums); margin-right: 8px; }
+        .title-text { color: var(--accent-15); }
+        .nowrap { white-space: nowrap; }
+
+        .p-bold { font-weight: 700; font-size: 15px; line-height: 1.2; letter-spacing: -0.01em; color: var(--highlight-dept); }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .stack-64 { display: flex; flex-direction: column; gap: 64px; }
+
+        /* Logo/Missions section specific */
+        .logo-section { width: 1030px; display: flex; flex-direction: column; align-items: center; gap: 30px; padding: 32px 32px 120px; border-top: 1px solid rgba(255,255,255,0.1); border-left: 1px solid rgba(255,255,255,0.1); }
+        .diagram { width: 100%; display: flex; flex-direction: column; gap: 10px; padding-top: 40px; }
+
+        /* Departments (Color section) */
+        .departments { width: 1030px; display: flex; flex-direction: column; gap: 30px; padding: 32px 32px 0px; border-left: 1px solid rgba(255,255,255,0.1); }
+        .dept-block { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 0 32px; }
+        .dept-image { width: 100%; height: 292.48px; background-position: center; background-size: cover; background-repeat: no-repeat; }
+        .dept-text { height: auto; overflow: visible; }
+        .dept-subheader { padding: 0 32px; }
+        .dept-title { font-size: 30px; font-weight: 700; line-height: 1.2; color: var(--highlight-dept); margin: 0 0 12px 0; }
+        .dept-desc { color: var(--accent-15); }
+
+        /* Contact (Typography section) */
+        .contact { width: 1030px; display: flex; flex-direction: column; gap: 30px; padding: 32px 32px 120px; border-top: 1px solid rgba(255,255,255,0.1); border-left: 1px solid rgba(255,255,255,0.1); }
+        .contact-head { display: flex; gap: 32px; padding: 0 0 40px; }
+        .contact-groups { display: flex; flex-direction: column; gap: 100px; padding: 0 32px; }
+        .contact-row { display: flex; flex-direction: column; gap: 40px; height: 132px; }
+        .contact-primary { font-weight: 400; font-size: 60px; line-height: 1.3; letter-spacing: -0.02em; color: var(--accent-15); }
+        .contact-secondary { font-size: var(--cap1-size); font-weight: var(--cap1-weight); line-height: var(--cap1-lh); color: var(--accent-15); }
+
+        /* Footer */
+        .footer { display: flex; flex-direction: column; gap: 31px; padding: 128px 0 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-top { display: flex; align-items: flex-end; gap: 59px; padding: 0 40px; }
+        .footer-logo { width: 349.13px; height: 81px; background: url("public/assets/footer_logo.png") center / contain no-repeat; }
+        .footer-text-row { display: inline-flex; gap: 5px; }
+        .footer-bottom { display: flex; flex-direction: column; gap: 200px; padding: 40px 40px 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-legal { display: flex; gap: 16px; }
+        .cap2 { font-size: var(--cap2-size); font-weight: var(--cap2-weight); line-height: var(--cap2-lh); color: var(--accent-15); }
+
+        /* Layout scaffold: fixed left nav + main content */
+
+        @media (max-width: 1320px) {
+            .container { width: 100%; }
+            .frame-desktop { width: 100%; }
+        }
+        @media (max-width: 900px) {
+            .nav { position: static; width: 100%; height: auto; align-items: center; }
+            .content { margin-left: 0; }
+            .section, .logo-section, .departments, .contact { width: 100%; }
+            .intro-row { flex-direction: column; }
+            .dept-block { grid-template-columns: 1fr; }
+        }
+    </style>
+    <meta name="figma-source" content="https://www.figma.com/design/MzFGTP4uqcmOL93tLUmK6j/Desktop-Landing-Page?node-id=8-199&t=J0AHI51MI0CL9BRU-4">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+    <main class="page">
+        <aside class="nav">
+            <div class="logo" aria-label="Saran Industries Logo"></div>
+            <nav class="links" aria-label="Primary">
+                <a class="link" href="#history"><span class="text">History</span><span class="num">01</span></a>
+                <a class="link" href="#timeline"><span class="text">Timeline</span><span class="num">02</span></a>
+                <a class="link" href="#missions"><span class="text">Missions &amp; Programs</span><span class="num">03</span></a>
+                <a class="link" href="#departments"><span class="text">Departments</span><span class="num">04</span></a>
+                <a class="link" href="#contact"><span class="text">Contact</span><span class="num">05</span></a>
+            </nav>
+        </aside>
+        <div class="content">
+            <div class="container frame-desktop">
+                <div class="main">
+                <section class="hero" role="img" aria-label="Hero"></section>
+
+                <section class="section-intro" id="intro">
+                    <div class="intro-row">
+                        <h1 class="h1">Who are we?</h1>
+                        <p class="paragraph">Saran Industries is a private space corporation founded by Rithviksaran who’s dedicated to building the future of human space exploration, defense, and interplanetary travel. Our mission is to design and develop advanced aerospace technologies that redefine what is possible from reusable space spacecrafts and heavy-payload launch systems to sustainable interplanetary infrastructure and defense solutions that protect humanity beyond Earth.
+
+We believe space is not just the next frontier - it is humanity’s destiny. By combining engineering innovation, bold vision, and an unshakable commitment to progress, Saran Industries aims to create technologies that will carry people, cargo, and civilization itself into the stars.
+
+This is more than a corporation. 
+This is the beginning of a movement — Glory for Mankind.</p>
+                    </div>
+                </section>
+
+                <section class="toc" aria-labelledby="toc-title">
+                    <h2 id="toc-title" class="h2">Contents</h2>
+                    <div class="toc-list">
+                        <div class="toc-item"><span class="h2"><span class="title-number">01</span><span class="title-text">History</span></span></div>
+                        <div class="toc-item"><span class="h2"><span class="title-number">02</span><span class="title-text">Timeline</span></span></div>
+                        <div class="toc-item"><span class="h2"><span class="title-number">03</span><span class="title-text">Missions &amp; Programs</span></span></div>
+                        <div class="toc-item"><span class="h2"><span class="title-number">04</span><span class="title-text">Departments</span></span></div>
+                        <div class="toc-item"><span class="h2"><span class="title-number">05</span><span class="title-text">Contact</span></span></div>
+                    </div>
+                </section>
+
+                <section class="section" id="history" aria-labelledby="history-title">
+                    <div class="row title-row">
+                        <div class="title-col"><h2 id="history-title" class="h1"><span class="title-number">01</span><span class="title-text">History</span></h2></div>
+                        <div class="num-col"></div>
+                    </div>
+                    <div class="row">
+                        <div class="grid-2" style="display:grid; grid-template-columns: 299px 1fr; gap: 32px; width:100%;">
+                            <div></div>
+                                <p class="paragraph">July 21st, 2023. A date that marked not just an incident, but a transformation. On this day, in the life of one young visionary, everything changed. A devastating moment that would become the catalyst for something far greater than anyone could have imagined.
+
+Four days later, Rithviksaran US founded Garudan Aerospace Research Agency emerged, GARA born from determination and an unwavering belief in what seemed impossible.
+
+The first vision was ambitious: Garudan (G9), a spacecraft capable of housing hundreds of people, carrying them beyond Earth's atmosphere toward new frontiers. A mother-ship in every sense. But reality demanded a more practical approach. Resources were limited, and the path to such an undertaking would require strategic steps.
+
+The focus shifted to Mission INDRA, an adaptable, multi-role spacecraft designed to revolutionize space transportation. Not just another vehicle, but a platform built to change how we think about reaching space.
+
+There was, however, one significant challenge: age.
+
+At fifteen, the founder faced skepticism from a world accustomed to credentials and conventional paths. The response varied, some rejected the ideas outright, some questioned the audacity, others simply watched in silence. I suppose we all thought that, one way or another.
+
+Yet with each setback came adaptation. Where others saw obstacles, he found opportunities. Where barriers appeared, he discovered workarounds. Each setback became a learning experience, each challenge refined his approach.
+
+However, legal restrictions on minors created significant hurdles. Progress was hindered not by technical limitations or lack of vision, but by regulatory constraints that prevented full implementation of the ideas.
+
+After two major setbacks, neither due to engineering failures but simply because of age-related legal barriers, a decision was made to take a different approach.
+
+The pivot was decisive: self-directed learning in Aerospace Engineering. With limited financial resources but unlimited access to free educational materials, the foundation began, rebuilding from the ground up. Knowledge became the new currency, and determination the driving force.
+
+Work commenced on the Indra’s S8 engine to develop a minimum viable product. But the demanding schedule of CBSE 12th grade presented its own challenges. Balancing academic requirements with aerospace ambitions required strategic prioritization.
+
+The decision was made to focus on academics first, with the understanding that the aerospace work would resume when the timing was right.
+
+The rest is yet to be written.</p>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="timeline" aria-labelledby="timeline-title">
+                    <div class="row title-row">
+                        <div class="title-col"><h2 id="timeline-title" class="h1"><span class="title-number">02</span><span class="title-text">Timeline</span></h2></div>
+                        <div class="num-col"></div>
+                    </div>
+                    <div class="stack-64">
+                        <div class="grid-2">
+                            <div class="diagram">
+                                <div class="p-bold">Q3 2023:
+Founding</div>
+                                <div class="paragraph">Founding of the corporation on 25th July 2023</div>
+                            </div>
+                            <div class="diagram">
+                                <div class="p-bold">Q3-4 2023 - Q1 2024: 
+MISSION Garudan</div>
+                                <div class="paragraph">The development of the first mission Garudan (G9) commenced.</div>
+                            </div>
+                        </div>
+                        <div class="grid-2">
+                            <div class="diagram">
+                                <div class="p-bold">Q2-4 2024: 
+MISSION Indra</div>
+                                <div class="paragraph">The development of G9 became statistically expensive, Thus started on a much practical mission. MISSION Indra (IDA)</div>
+                            </div>
+                            <div class="diagram">
+                                <div class="p-bold">Q1 2025:
+Theory of Galactics</div>
+                                <div class="paragraph">A Research about Space Transmission and New State of matter.</div>
+                            </div>
+                        </div>
+                        <div class="grid-2">
+                            <div class="diagram">
+                                <div class="p-bold">Q2 2025:
+IDA R&amp;D Resumes</div>
+                                <div class="paragraph">The IDA development  was resumed to build the S8 Hybrid Engine, The Heart of the Program.</div>
+                            </div>
+                            <div class="diagram">
+                                <div class="p-bold">Q3-4 2025 - Q1 2026: 
+Academic Attention Required.</div>
+                                <div class="paragraph">Important Examinations and College Admissions.</div>
+                            </div>
+                        </div>
+                        <div class="grid-2">
+                            <div class="diagram">
+                                <div class="p-bold">Q2-4 2026: 
+MISSION Indra Resumes</div>
+                                <div class="paragraph">The Mission shall once again be resumed.</div>
+                            </div>
+                            <div class="diagram">
+                                <div class="p-bold">Q1 2027:
+Registration</div>
+                                <div class="paragraph">As the Founder turns 18, The corporation will be finally registered and will become Official.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="logo-section" id="missions" aria-labelledby="missions-title">
+                    <div class="row title-row" style="align-self: stretch;">
+                        <div class="title-col"><h2 id="missions-title" class="h1 nowrap"><span class="title-number">03</span><span class="title-text">Missions &amp; Programs</span></h2></div>
+                    </div>
+                    <div class="stack-64" style="align-self: stretch;">
+                        <div class="grid-2">
+                            <div class="diagram">
+                                <div class="p-bold">MISSION Garudan (G9)</div>
+                                <div class="paragraph">The spaceship will be created to go great distances in the galaxy and will be able to support humans for years.</div>
+                            </div>
+                            <div class="diagram">
+                                <div class="p-bold">MISSION Indra (IDA)</div>
+                                <div class="paragraph">A Multi-role Small Payload Launch Vehicle (SPLV) capable of immediate deployments and multiple uses.</div>
+                            </div>
+                            <div class="diagram">
+                                <div class="p-bold">Theory Of Galactics (TOG)</div>
+                                <div class="paragraph">A Research that deals with New state of matter, Spacial Displacement and Transmission and so on.</div>
+                            </div>
+                            <div class="diagram">
+                                <div class="p-bold">MISSION Vel (VL6)</div>
+                                <div class="paragraph">The program is aimed to build a Heavy Payload Launch Vehicle (HLV) similar to our Indian GSLV LVM3.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="departments" id="departments" aria-labelledby="departments-title">
+                    <div class="row title-row">
+                        <div class="title-col"><h2 id="departments-title" class="h1"><span class="title-number">04</span><span class="title-text">Departments</span></h2></div>
+                        <div class="num-col"></div>
+                    </div>
+                    <div class="dept-subheader"><h3 class="h3" style="margin: 0;">Our Trinity of Space Divisions</h3></div>
+                    <div class="stack-64">
+                        <div class="dept-block">
+                            <div class="dept-image" style="background-image: url('public/assets/dept_doaaa.png');"></div>
+                            <div class="dept-text">
+                                <div class="dept-title">Department of Aerospace, Astronomy and Astrophysics (DOAAA)</div>
+                                <p class="paragraph dept-desc">
+                                    
+                                    We design, develop and build spacecrafts that takes humanity to the far extents of space and we research the unknown to understand about it.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="dept-block">
+                            <div class="dept-image" style="background-image: url('public/assets/dept_diel.png');"></div>
+                            <div class="dept-text">
+                                <div class="dept-title">Department of Infrastructure, Energy and Logistics (DIEL)</div>
+                                <p class="paragraph dept-desc">
+                                    
+                                    Since energy powers the universe, we handle the infrastructure needed to generate energy for space applications, ensure that they are functioning for the international agencies, and handle the necessary logistics.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="dept-block">
+                            <div class="dept-image" style="background-image: url('public/assets/dept_doppd.png');"></div>
+                            <div class="dept-text">
+                                <div class="dept-title">Department of Planetary Protection and Defense (DOPPD)</div>
+                                <p class="paragraph dept-desc">
+                                    
+                                    Humanity is always on the edge of extinction and when any threat arises, The division will try to bring International Agencies and resources to protect ourselves and the future of mankind.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="contact" id="contact" aria-labelledby="contact-title">
+                    <div class="contact-head">
+                        <div class="title-col"><h2 id="contact-title" class="h1"><span class="title-number">05</span><span class="title-text">Contact</span></h2></div>
+                        <div class="num-col"></div>
+                    </div>
+                    <div class="contact-groups">
+                        <div class="contact-row">
+                            <div class="contact-primary">Mail</div>
+                            <div class="contact-secondary"><a href="mailto:contact.gsra@gmail.com" class="cap1" style="color: var(--accent-15); text-decoration: underline;">contact.gsra@gmail.com</a></div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-primary">Corporation Instagram</div>
+                            <div class="contact-secondary"><a href="https://instagram.com/saranindustries" target="_blank" rel="noopener" style="color: var(--accent-15); text-decoration: underline;">@saranindustries</a></div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-primary">Founder’s Instagram</div>
+                            <div class="contact-secondary"><a href="https://instagram.com/rithviksaran.us" target="_blank" rel="noopener" style="color: var(--accent-15); text-decoration: underline;">@rithviksaran.us</a></div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-primary">Founder’s Site</div>
+                            <div class="contact-secondary"><a href="https://sites.google.com/view/rithviksaran-portfolio/home?authuser=1" target="_blank" rel="noopener" style="color: var(--accent-15); text-decoration: underline;">rithviksaran</a></div>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="footer">
+                    <div class="footer-top">
+                        <div class="footer-logo" aria-label="Footer Logo"></div>
+                        <div class="footer-text-row"><span class="cap2">Back to the top</span></div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="footer-legal">
+                            <span class="cap2">© Saran Industries</span>
+                            <span class="cap2">All Rights Reserved</span>
+                        </div>
+                    </div>
+                </footer>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

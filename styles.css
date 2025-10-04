@@ -1,0 +1,952 @@
+/* CSS Variables and Base Styles */
+:root {
+    --bg: #000000;
+    --text: #FFF5BA; /* Background/Text Colour */
+    --accent-15: #FFFFFF; /* Accent/Accent 15 */
+    --accent-14: #FA9819; /* Accent/Accent 14 */
+    --accent-nums: #F45F00; /* Numbers color for nav/contents/titles */
+    --highlight-dept: #FA9819; /* Department title highlight */
+
+    --container-w: 1280px;
+    --main-w: 1030px;
+
+    /* Typography from Figma tokens */
+    --links-size: 15px; --links-weight: 500; --links-lh: 1.2;
+    --display-size: 10px; --display-weight: 500; --display-lh: 1.2;
+    --h1-size: 60px; --h1-weight: 500; --h1-lh: 1.1;
+    --h2-size: 30px; --h2-weight: 500; --h2-lh: 1.2;
+    --h3-size: 22px; --h3-weight: 600; --h3-lh: 1.2;
+    --p-size: 18px; --p-weight: 500; --p-lh: 1.2;
+    --cap1-size: 30px; --cap1-weight: 500; --cap1-lh: 1.2;
+    --cap2-size: 13px; --cap2-weight: 500; --cap2-lh: 1.2;
+}
+
+/* Reset and Base Styles */
+* { 
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+html, body { 
+    background: var(--bg); 
+    color: var(--text); 
+    font-family: "Rethink Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+img { 
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+}
+
+/* Container and Layout */
+.container { 
+    width: var(--container-w); 
+    margin: 0 auto; 
+}
+
+.page { 
+    width: 100%; 
+}
+
+.content { 
+    margin-left: 250px; 
+    position: relative; 
+    z-index: 1; 
+}
+
+.frame-desktop { 
+    width: var(--main-w); 
+    margin: 0 auto; 
+}
+
+/* Navigation Styles */
+.nav { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    gap: 24px; 
+    padding: 30px 10px; 
+    width: 250px; 
+    height: 100vh; 
+    background: var(--bg); 
+    border-right: 1px solid rgba(255,255,255,0.1); 
+    z-index: 1000; 
+    transition: transform 0.3s ease;
+}
+
+.nav .logo { 
+    width: 100%; 
+    height: 71.83px; 
+    padding: 30px 20px 30px 32px; 
+    background: url("nav_logo.png") left center / contain no-repeat; 
+}
+
+.nav .links { 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    padding: 0 20px 30px 32px; 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+}
+
+.nav .link { 
+    display: inline-flex; 
+    gap: 8px; 
+    align-items: baseline; 
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav .link:hover {
+    opacity: 0.8;
+}
+
+.nav .link .text { 
+    font-size: var(--links-size); 
+    font-weight: var(--links-weight); 
+    line-height: var(--links-lh); 
+    color: var(--accent-15); 
+    letter-spacing: -0.02em; 
+}
+
+.nav .link .num { 
+    font-size: var(--display-size); 
+    font-weight: var(--display-weight); 
+    line-height: var(--display-lh); 
+    color: var(--accent-nums); 
+    letter-spacing: -0.02em; 
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 1001;
+    padding: 20px;
+}
+
+.mobile-nav .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-nav .menu {
+    color: var(--accent-15);
+    font-size: var(--links-size);
+    font-weight: var(--links-weight);
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hero Section */
+.hero { 
+    width: 100%; 
+    height: 540px; 
+    background: url("hero.png") center / cover no-repeat; 
+}
+
+/* Main Content Layout */
+.main { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Section Styles */
+.section-intro { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    padding: 32px 32px 120px; 
+    border-left: 1px solid rgba(255,255,255,0.1); 
+}
+
+.intro-row { 
+    display: flex; 
+    gap: 32px; 
+    align-items: flex-start; 
+}
+
+.h1 { 
+    font-size: var(--h1-size); 
+    font-weight: var(--h1-weight); 
+    line-height: var(--h1-lh); 
+    letter-spacing: -0.01em; 
+    color: var(--accent-15); 
+    width: 419px; 
+}
+
+.paragraph { 
+    font-size: var(--p-size); 
+    font-weight: var(--p-weight); 
+    line-height: var(--p-lh); 
+    letter-spacing: -0.01em; 
+    color: var(--text); 
+    white-space: pre-wrap; 
+}
+
+.intro-row .paragraph { 
+    flex: 1; 
+}
+
+/* Table of Contents */
+.toc { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 32px; 
+    padding: 32px 32px 120px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    border-left: 1px solid rgba(255,255,255,0.1); 
+}
+
+.h2 { 
+    font-size: var(--h2-size); 
+    font-weight: var(--h2-weight); 
+    line-height: var(--h2-lh); 
+    letter-spacing: -0.02em; 
+    color: var(--accent-15); 
+}
+
+.toc-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.toc-item { 
+    display: flex; 
+    gap: 10px; 
+}
+
+/* Section Layout */
+.section { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    padding: 32px 32px 120px; 
+    width: 1030px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    border-left: 1px solid rgba(255,255,255,0.1); 
+}
+
+.row { 
+    display: flex; 
+    gap: 32px; 
+    width: 100%; 
+}
+
+.title-row { 
+    display: flex; 
+    align-items: flex-end; 
+    gap: 4px; 
+    width: 100%; 
+}
+
+.title-col { 
+    width: 299px; 
+}
+
+.num-col { 
+    margin-left: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+}
+
+.title-number { 
+    color: var(--accent-nums); 
+    margin-right: 8px; 
+}
+
+.title-text { 
+    color: var(--accent-15); 
+}
+
+.nowrap { 
+    white-space: nowrap; 
+}
+
+.p-bold { 
+    font-weight: 700; 
+    font-size: 15px; 
+    line-height: 1.2; 
+    letter-spacing: -0.01em; 
+    color: var(--highlight-dept); 
+}
+
+.grid-2 { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 32px; 
+}
+
+.stack-64 { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 64px; 
+}
+
+/* Logo/Missions Section */
+.logo-section { 
+    width: 1030px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 30px; 
+    padding: 32px 32px 120px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    border-left: 1px solid rgba(255,255,255,0.1); 
+}
+
+.diagram { 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    padding-top: 40px; 
+}
+
+/* Departments Section */
+.departments { 
+    width: 1030px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    padding: 32px 32px 0px; 
+    border-left: 1px solid rgba(255,255,255,0.1); 
+}
+
+.dept-block { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 32px; 
+    padding: 0 32px; 
+}
+
+.dept-image { 
+    width: 100%; 
+    height: 292.48px; 
+    background-position: center; 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+.dept-text { 
+    height: auto; 
+    overflow: visible; 
+}
+
+.dept-subheader { 
+    padding: 0 32px; 
+}
+
+.dept-title { 
+    font-size: 30px; 
+    font-weight: 700; 
+    line-height: 1.2; 
+    color: var(--highlight-dept); 
+    margin: 0 0 12px 0; 
+}
+
+.dept-desc { 
+    color: var(--accent-15); 
+}
+
+/* Contact Section */
+.contact { 
+    width: 1030px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    padding: 32px 32px 120px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    border-left: 1px solid rgba(255,255,255,0.1); 
+}
+
+.contact-head { 
+    display: flex; 
+    gap: 32px; 
+    padding: 0 0 40px; 
+}
+
+.contact-groups { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 100px; 
+    padding: 0 32px; 
+}
+
+.contact-row { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 40px; 
+    height: 132px; 
+}
+
+.contact-primary { 
+    font-weight: 400; 
+    font-size: 60px; 
+    line-height: 1.3; 
+    letter-spacing: -0.02em; 
+    color: var(--accent-15); 
+}
+
+.contact-secondary { 
+    font-size: var(--cap1-size); 
+    font-weight: var(--cap1-weight); 
+    line-height: var(--cap1-lh); 
+    color: var(--accent-15); 
+}
+
+/* Footer */
+.footer { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 31px; 
+    padding: 128px 0 32px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+}
+
+.footer-top { 
+    display: flex; 
+    align-items: flex-end; 
+    gap: 59px; 
+    padding: 0 40px; 
+}
+
+.footer-logo { 
+    width: 349.13px; 
+    height: 81px; 
+    background: url("footer_logo.png") center / contain no-repeat; 
+}
+
+.footer-text-row { 
+    display: inline-flex; 
+    gap: 5px; 
+}
+
+.footer-bottom { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 200px; 
+    padding: 40px 40px 20px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+}
+
+.footer-legal { 
+    display: flex; 
+    gap: 16px; 
+}
+
+.cap2 { 
+    font-size: var(--cap2-size); 
+    font-weight: var(--cap2-weight); 
+    line-height: var(--cap2-lh); 
+    color: var(--accent-15); 
+}
+
+/* Responsive Design - Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .container { 
+        width: 100%; 
+        padding: 0 20px;
+    }
+    
+    .frame-desktop { 
+        width: 100%; 
+    }
+    
+    .nav {
+        width: 200px;
+        padding: 20px 10px;
+    }
+    
+    .content {
+        margin-left: 200px;
+    }
+    
+    .section, .logo-section, .departments, .contact {
+        width: 100%;
+        padding: 24px 20px 80px;
+    }
+    
+    .section-intro {
+        padding: 24px 20px 80px;
+    }
+    
+    .toc {
+        padding: 24px 20px 80px;
+    }
+    
+    .h1 {
+        font-size: 48px;
+        width: 100%;
+    }
+    
+    .contact-primary {
+        font-size: 48px;
+    }
+    
+    .dept-block {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Fix Who are we section for tablet - stack text below title */
+    .intro-row {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .intro-row .h1 {
+        width: 100%;
+        margin-bottom: 0;
+    }
+    
+    .intro-row .paragraph {
+        width: 100%;
+    }
+}
+
+/* Responsive Design - Mobile (up to 768px) */
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: block;
+    }
+    
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        transform: translateX(-100%);
+        background: var(--bg);
+        z-index: 1000;
+        padding: 60px 20px 20px;
+    }
+    
+    .nav.active {
+        transform: translateX(0);
+    }
+    
+    .content {
+        margin-left: 0;
+    }
+    
+    .container {
+        width: 100%;
+        padding: 0 16px;
+    }
+    
+    .frame-desktop {
+        width: 100%;
+    }
+    
+    .section, .logo-section, .departments, .contact {
+        width: 100%;
+        padding: 20px 16px 60px;
+        border-left: none;
+    }
+    
+    .section-intro {
+        padding: 20px 16px 60px;
+        border-left: none;
+    }
+    
+    .toc {
+        padding: 20px 16px 60px;
+        border-left: none;
+        grid-template-columns: 1fr;
+    }
+    
+    .intro-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .h1 {
+        font-size: 36px;
+        width: 100%;
+        line-height: 1.2;
+    }
+    
+    .h2 {
+        font-size: 24px;
+    }
+    
+    .h3 {
+        font-size: 18px;
+    }
+    
+    .paragraph {
+        font-size: 16px;
+    }
+    
+    .contact-primary {
+        font-size: 36px;
+    }
+    
+    .contact-secondary {
+        font-size: 20px;
+    }
+    
+    .dept-block {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 16px;
+    }
+    
+    .dept-image {
+        height: 200px;
+    }
+    
+    .dept-title {
+        font-size: 24px;
+    }
+    
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .stack-64 {
+        gap: 40px;
+    }
+    
+    .hero {
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .footer {
+        padding: 60px 0 20px;
+    }
+    
+    .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0 16px;
+    }
+    
+    .footer-logo {
+        width: 100%;
+        max-width: 300px;
+        height: 60px;
+    }
+    
+    .footer-bottom {
+        gap: 40px;
+        padding: 20px 16px 10px;
+    }
+    
+    .footer-legal {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    /* Fix History section text overflow on mobile */
+    .section .grid-2 {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: none !important;
+        gap: 20px !important;
+    }
+    
+    .section .grid-2 .desktop-spacer {
+        display: none;
+    }
+    
+    .section .grid-2 .history-content {
+        width: 100%;
+    }
+    
+    /* Fix Missions title visibility */
+    .logo-section .h1.nowrap {
+        white-space: normal;
+        word-wrap: break-word;
+        line-height: 1.1;
+    }
+}
+
+/* Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .section, .logo-section, .departments, .contact {
+        padding: 16px 12px 40px;
+    }
+    
+    .section-intro {
+        padding: 16px 12px 40px;
+    }
+    
+    .toc {
+        padding: 16px 12px 40px;
+    }
+    
+    .h1 {
+        font-size: 28px;
+    }
+    
+    .h2 {
+        font-size: 20px;
+    }
+    
+    .paragraph {
+        font-size: 14px;
+    }
+    
+    .contact-primary {
+        font-size: 28px;
+    }
+    
+    .contact-secondary {
+        font-size: 16px;
+    }
+    
+    .dept-title {
+        font-size: 20px;
+    }
+    
+    .dept-image {
+        height: 150px;
+    }
+    
+    .hero {
+        height: 250px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .footer {
+        padding: 40px 0 16px;
+    }
+    
+    .footer-top {
+        padding: 0 12px;
+    }
+    
+    .footer-bottom {
+        padding: 16px 12px 8px;
+    }
+}
+
+/* Extra Small Mobile (up to 360px) */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 8px;
+    }
+    
+    .section, .logo-section, .departments, .contact {
+        padding: 12px 8px 30px;
+    }
+    
+    .section-intro {
+        padding: 12px 8px 30px;
+    }
+    
+    .toc {
+        padding: 12px 8px 30px;
+    }
+    
+    .h1 {
+        font-size: 24px;
+        line-height: 1.1;
+    }
+    
+    .h2 {
+        font-size: 18px;
+    }
+    
+    .paragraph {
+        font-size: 13px;
+        line-height: 1.3;
+    }
+    
+    .contact-primary {
+        font-size: 24px;
+    }
+    
+    .contact-secondary {
+        font-size: 14px;
+    }
+    
+    .dept-title {
+        font-size: 18px;
+    }
+    
+    .dept-image {
+        height: 120px;
+    }
+    
+    .hero {
+        height: 200px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    /* Ensure Missions title is visible */
+    .logo-section .h1.nowrap {
+        font-size: 20px;
+        white-space: normal;
+        word-wrap: break-word;
+        line-height: 1.1;
+    }
+    
+    .footer {
+        padding: 30px 0 12px;
+    }
+    
+    .footer-top {
+        padding: 0 8px;
+    }
+    
+    .footer-bottom {
+        padding: 12px 8px 6px;
+    }
+}
+
+/* Ultra Small Mobile (up to 320px) */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 6px;
+    }
+    
+    .section, .logo-section, .departments, .contact {
+        padding: 10px 6px 25px;
+    }
+    
+    .section-intro {
+        padding: 10px 6px 25px;
+    }
+    
+    .toc {
+        padding: 10px 6px 25px;
+    }
+    
+    .h1 {
+        font-size: 20px;
+        line-height: 1.1;
+    }
+    
+    .h2 {
+        font-size: 16px;
+    }
+    
+    .paragraph {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    
+    .contact-primary {
+        font-size: 20px;
+    }
+    
+    .contact-secondary {
+        font-size: 12px;
+    }
+    
+    .dept-title {
+        font-size: 16px;
+    }
+    
+    .dept-image {
+        height: 100px;
+    }
+    
+    .hero {
+        height: 180px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    /* Ensure Missions title is visible on 320px */
+    .logo-section .h1.nowrap {
+        font-size: 18px;
+        white-space: normal;
+        word-wrap: break-word;
+        line-height: 1.1;
+    }
+    
+    .footer {
+        padding: 25px 0 10px;
+    }
+    
+    .footer-top {
+        padding: 0 6px;
+    }
+    
+    .footer-bottom {
+        padding: 10px 6px 5px;
+    }
+}
+
+/* Navigation Menu Styles for Mobile */
+.nav .close-btn {
+    color: var(--accent-15);
+    font-size: var(--links-size);
+    font-weight: var(--links-weight);
+    cursor: pointer;
+    align-self: flex-end;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav .close-btn {
+        display: block;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+.nav .link:focus,
+.mobile-nav .menu:focus {
+    outline: 2px solid var(--accent-14);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .nav,
+    .mobile-nav {
+        display: none;
+    }
+    
+    .content {
+        margin-left: 0;
+    }
+    
+    .hero {
+        height: 200px;
+    }
+}
